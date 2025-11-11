@@ -36,9 +36,12 @@ To: <br/>
 `start C:\Java\bin\javaw` <br/>
 (replace with your actual Java path)
 
+5. Add java as system environment variable <br/>
+   create system variable as `JRE_HOME` pointing to java directory (`C:/Java`)
+
 ### **Step: 3** Run MegaRaid Storage Manager
 
-## Server Installation (Ubuntu/Linux)
+## Server Installation (Ubuntu/Debian)
 
 ### **Step: 1** Create .deb packages for Debian based distros
 
