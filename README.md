@@ -126,7 +126,7 @@ sudo rm /etc/redhat-release
 
 - edit <br/>
   `/usr/local/MegaRAID Storage Manager/Framework/startup.sh` <br/>
-  and replace: <br/>
+- and replace: <br/>
 ```LD_LIBRARY_PATH=`pwd`:/opt/lsi/Apache:/opt/lsi/Pegasus:/opt/lsi/openssl;export LD_LIBRARY_PATH```
 
 - with: <br/>
