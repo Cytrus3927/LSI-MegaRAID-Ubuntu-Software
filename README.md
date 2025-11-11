@@ -15,48 +15,40 @@ This repository contains installation instructions and helper scripts for **LSI 
 
 ## Client Installation (Windows 10/11)
 
-### **Step: 1** Set-up Java on system
+### **Step: 1** Install MegaRaid Storage Manager
+
+1. Download official MSM package [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Windows.zip)
+2. Unpack package
+3. Run `setup.exe` from MSM directory 
+4. Follow installation instructions; if no LDAP server is available, choose **Do not use LDAP**  
+5. Finish installation do not run the application yet
+
+### **Step: 2** Set-up Java for MSM
 
 1. Download **Temurin JDK 8 32-bit LTS version (ZIP)** here: [Download](https://adoptium.net/en-GB/temurin/releases?version=8&os=any&arch=any)  
 2. Extract to `C:/Java/`  
-3. Set system environment variable `JRE_HOME` to the Java folder (folder that contains bin/ directory).
-4. Download official MSM package [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Windows.zip)
-5. Unpack package
-6. Run `setup.exe` from MSM directory 
-7. Follow installation instructions; if no LDAP server is available, choose **Do not use LDAP**  
-8. Finish installation and run the application
+3. Open the file with administration privileges:  
+`C:\Program Files (x86)\MegaRAID Storage Manager\startupui.bat`
+4. Change the Java path: <br/>
+From: <br/>
+ `start %JRE_HOME%\bin\javaw` <br/>
+To: <br/>
+`start C:\Java\bin\javaw` <br/>
+(replace with your actual Java path)
 
-> [!WARNING]
->### Windows 11 fix:
->
->If you get the error `\bin\javaw not found`:
->
->1. Open the file:  
-> -  `C:\Program Files (x86)\MegaRAID Storage Manager\startupui.bat`
-> 
->2. Change the Java path: <br/>
-> - From: <br/>
-> `start %JRE_HOME%\bin\javaw` <br/>
->- To: <br/>
->`start C:\Java\bin\javaw` <br/>
->(replace with your actual Java path)
-
+### **Step: 3** Run MegaRaid Storage Manager
 
 ## Server Installation (Ubuntu/Linux)
 
 ### **Step: 1** Create .deb packages for Debian based distros
 
-1. Install alien for `.rpm` package repacking
+1. Install alien for `.rpm` package repacking <br/>
+`sudo apt install alien`
 
-  - `sudo apt install alien`
-
-2. Download the official MegaRaid Storage Manager package from Broadcom [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Linux-x64.zip)
-
-- Extract it to a folder
-
-3. Convert `.rpm` into `.deb` package
-
-  - `sudo alien --scripts *.rpm`
+2. Download the official MegaRaid Storage Manager package from Broadcom [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Linux-x64.zip) <br/>
+Extract it to a folder
+3. Convert `.rpm` into `.deb` package <br/>
+ `sudo alien --scripts *.rpm`
 
 You should get those files:
 
@@ -83,34 +75,27 @@ exit
 sudo rm /etc/redhat-release
 ```
 
-2. Set root password for MSM app
-
-- `sudo passwd`
-
+2. Set root password for MSM app <br/>
+`sudo passwd`
 
 
 ### **Step: 3** Modify MegaRaid scripts to match Debian format
 
-1. Edit init script
-   
--  Open <br/>
-`/etc/init.d/vivaldiframeworkd`
-
-- and replace: <br/>
+1. Edit init script <br/>
+Open <br/>
+`/etc/init.d/vivaldiframeworkd` <br/>
+and replace: <br/>
 `for ((i=0, i < 20, i++))` <br/>
-
-- with: <br/>
+with: <br/>
 ```for i in `seq 0 19` ```
 
 
-2. Edit startup script
-
-- edit <br/>
-  `/usr/local/MegaRAID Storage Manager/Framework/startup.sh` <br/>
-- and replace: <br/>
-```LD_LIBRARY_PATH=`pwd`:/opt/lsi/Apache:/opt/lsi/Pegasus:/opt/lsi/openssl;export LD_LIBRARY_PATH```
-
-- with: <br/>
+2. Edit startup script <br/>
+Open <br/>
+`/usr/local/MegaRAID Storage Manager/Framework/startup.sh` <br/>
+and replace: <br/>
+```LD_LIBRARY_PATH=`pwd`:/opt/lsi/Apache:/opt/lsi/Pegasus:/opt/lsi/openssl;export LD_LIBRARY_PATH``` <br/>
+with: <br/>
 ```LD_LIBRARY_PATH=`pwd`:/opt/lsi/Pegasus:/usr/sbin/openssl;export LD_LIBRARY_PATH```
 
 
@@ -126,14 +111,15 @@ sudo rm /etc/redhat-release
 `service vivaldiframeworkd status` <br/>
 `journalctl -xe`
 
-### **Step: 5** (Optional) Add storcli tool as system command
-`sudo ln -s /usr/local/MegaRaid\ Storage\ Manager/StorCLI/storcli64 /usr/local/sbin/storcli`
+### **Step: 5** Allow MSM Client to access server via ufw firewall
 
-### **Step: 6** Allow MSM Client to access server via ufw firewall
-```
-sudo ufw allow 3071/tcp
-sudo ufw allow 5571/tcp
-```
+`sudo ufw allow 3071/tcp 5571/tcp `
+
+
+### **Step: 6** (Optional) Add storcli tool as system command
+`sudo ln -s /usr/local/MegaRaid\ Storage\ Manager/StorCLI/storcli64 /usr/local/sbin/storcli` <br/>
+>Note: storcli works only with sudo ex. `sudo storcli show`, if you run it as normal user you probably gets 0 cards detected even if you have one in your system
+
 
 ### Licensing
 The MegaRAID Storage Manager software is proprietary Broadcom software. This repository does not include the MSM binaries. Software is provided AS IS without any warranty. Users must obtain the official packages from Broadcom and comply with their license.
