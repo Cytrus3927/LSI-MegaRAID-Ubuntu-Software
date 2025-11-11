@@ -9,8 +9,6 @@ This repository contains installation instructions and helper scripts for **LSI 
 
 - [Client Installation (Windows 10/11)](#client-installation-windows-1011)
 - [Server Installation (Ubuntu/Linux)](#server-installation-ubuntulinux)
-- [System Setup & Fixes](#system-setup--fixes)
-- [Networking](#networking)
 - [Licensing](#licensing)
 
 ---
@@ -21,26 +19,7 @@ This repository contains installation instructions and helper scripts for **LSI 
 
 1. Download **Temurin JDK 8 32-bit LTS version (ZIP)** here: [Download](https://adoptium.net/en-GB/temurin/releases?version=8&os=any&arch=any)  
 2. Extract to `C:/Java/`  
-3. Set environment variable `JRE_HOME` to the Java folder.
-
-> [!NOTE]
->### Original Broadcom instructions:
->
->Prior to the MSM installation or Upgrade setup a JRE. Follow the below instructions to setup. 
->
->Download and unzip OpenJRE in your desired location (e.g., `C:\Java\jre`)  
->(i) (Optional) Copy `javax.activation.jar` to `C:\Java\jre\bin`  
->Download: `[INSERT LINK]`  
->
->Set OpenJRE-8 x86 path to System path  
->- Go to System Properties → Advanced → Environmental Variables  
->- Under System Variables, create `JRE_HOME` and set it to `C:\Java\jre`
->
->4. Run `setup.exe` from MSM installer  
->5. Follow installation instructions; if no LDAP server is available, choose **Do not use LDAP**  
->6. Finish installation and run the application
->
-
+3. Set system environment variable `JRE_HOME` to the Java folder (folder that contains bin/ directory).
 4. Download official MSM package [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Windows.zip)
 5. Unpack package
 6. Run `setup.exe` from MSM directory 
@@ -115,7 +94,7 @@ sudo rm /etc/redhat-release
 1. Edit init script
    
 -  Open <br/>
-`/etc/init.d/vivaldiframeworkd` <br/>
+`/etc/init.d/vivaldiframeworkd`
 
 - and replace: <br/>
 `for ((i=0, i < 20, i++))` <br/>
@@ -144,10 +123,10 @@ sudo rm /etc/redhat-release
 `service vivaldiframeworkd start`
 
 3. Check if any error occured <br/>
-`service vivaldiframeworkd status <br/>` <br/>
+`service vivaldiframeworkd status` <br/>
 `journalctl -xe`
 
-### **Step: 5** Optional: Add storcli tool as system command
+### **Step: 5** (Optional) Add storcli tool as system command
 `sudo ln -s /usr/local/MegaRaid\ Storage\ Manager/StorCLI/storcli64 /usr/local/sbin/storcli`
 
 ### **Step: 6** Allow MSM Client to access server via ufw firewall
