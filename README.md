@@ -19,7 +19,7 @@ This repository contains installation instructions and helper scripts for **LSI 
 
 ### **Step: 1** Set-up Java on system
 
-1. Download **Temurin JDK 8 32-bit LTS version (ZIP)** here: `[INSERT LINK]`  
+1. Download **Temurin JDK 8 32-bit LTS version (ZIP)** here: [Download](https://adoptium.net/en-GB/temurin/releases?version=8&os=any&arch=any)  
 2. Extract to `C:/Java/`  
 3. Set environment variable `JRE_HOME` to the Java folder.
 
@@ -41,9 +41,11 @@ This repository contains installation instructions and helper scripts for **LSI 
 >6. Finish installation and run the application
 >
 
-4. Run `setup.exe` from MSM installer  
-5. Follow installation instructions; if no LDAP server is available, choose **Do not use LDAP**  
-6. Finish installation and run the application
+4. Download official MSM package [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Windows.zip)
+5. Unpack package
+6. Run `setup.exe` from MSM directory 
+7. Follow installation instructions; if no LDAP server is available, choose **Do not use LDAP**  
+8. Finish installation and run the application
 
 > [!WARNING]
 >### Windows 11 fix:
@@ -69,7 +71,7 @@ This repository contains installation instructions and helper scripts for **LSI 
 
   - `sudo apt install alien`
 
-2. Download the official MegaRaid Storage Manager package from Broadcom [INSERT LINK]
+2. Download the official MegaRaid Storage Manager package from Broadcom [Download](https://docs.broadcom.com/docs-and-downloads/17.05.06.00_MSM_Linux-x64.zip)
 
 - Extract it to a folder
 
