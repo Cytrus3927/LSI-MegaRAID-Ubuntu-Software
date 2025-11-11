@@ -34,14 +34,26 @@ From: <br/>
  `start %JRE_HOME%\bin\javaw` <br/>
 To: <br/>
 `start C:\Java\bin\javaw` <br/>
+(replace with your actual Java path) <br/>
+If your directory contains spaces, you need to do somethink like this <br/>
+`start "" "C:\Program Files\Java\jre1.8.0_431\bin\javaw.exe" -DVENUS=true -classpath ".;GUI.jar;monitorgui.jar;DebugLog.jar;jaxen-1.1.jar;jdom-1.1.jar" GUI.VivaldiStartupDialog ajsgyqkj=71244`
 (replace with your actual Java path)
 
-5. Add java as system environment variable <br/>
-   create system variable as `JRE_HOME` pointing to java directory (`C:/Java`)
+>[!WARNING]
+> If MegaRAID Storage Manager does not start correctly or you encounter errors related to Java
+> 1. Add Java as a system environment variable <br/>
+>    - Open System Properties → Advanced → Environment Variables <br/>
+>    - Under System Variables, click New <br/>
+>    - Set Variable name: JRE_HOME <br/>
+>    - Set Variable value: the path to your Java installation directory (`C:\Java`) <br/>
+>    - Save the variable <br/>
 
 ### **Step: 3** Run MegaRaid Storage Manager
 
 ## Server Installation (Ubuntu/Debian)
+
+Tested on Ubuntu Server 25.10 with OpenJDK 21 (headless) — everything worked correctly without issues.
+However, according to Broadcom’s documentation, the server officially recommends using Java 8.
 
 ### **Step: 1** Create .deb packages for Debian based distros
 
